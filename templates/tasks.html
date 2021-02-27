@@ -1,24 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
-</head>
+{%block content%}
 
-<body>
+<h2>I'm part of the content </h2>
 
-    {%for task in tasks %}
+{%for task in tasks %}
 
-    {{task.task_name}}<br>
-    {{task.category_name}}<br>
-    {{task.task_description}}<br>
-    {{task.is_urgent}}<br>
-    {{task.due_date}}<br>
+{{task.task_name}}<br>
+{{task.category_name}}<br>
+{{task.task_description}}<br>
+{{task.is_urgent}}<br>
+{{task.due_date}}<br>
 
-    {% endfor %}
+{% endfor %}
 
-</body>
-
-</html>
+{%endblock%}

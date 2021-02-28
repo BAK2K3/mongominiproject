@@ -58,10 +58,30 @@
         </ul>
     </header>
 
+    <section>
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
 
-    {% block content %}
-    {%endblock%}
+        {% if messages %}
+        {%for message in messages %}
 
+        <div class="row flashes">
+            <h4 class="light-blue lighten-4 center-align">{{message}}</h4>
+        </div>
+
+        {%endfor%}
+
+        {%endif%}
+
+        {%endwith%}
+    </section>
+
+    <main class="container">
+
+        {% block content %}
+        {%endblock%}
+
+    </main>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"

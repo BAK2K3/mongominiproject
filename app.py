@@ -16,11 +16,23 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+# mongo.db.tasks.create_index([("task_name", "text"),("task_description", "text")])
+# mongo.db.tasks.index_information()
+# mongo.db.tasks.drop_index('task_name_text_task_description_text')
+# mongo.db.tasks.drop_indexes()
+
 
 @app.route("/")
 @app.route("/get_tasks")
 def get_tasks():
     tasks = list(mongo.db.tasks.find())
+    return render_template("tasks.html", tasks=tasks)
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    tasks = list(mongo.db.tasks.find({"$text": {"$search": query}}))
     return render_template("tasks.html", tasks=tasks)
 
 
